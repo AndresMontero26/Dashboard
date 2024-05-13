@@ -1,0 +1,10 @@
+.container {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  margin-top: 0px !important;
+}
+.icon {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+  cursor: pointer;
+}

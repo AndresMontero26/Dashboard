@@ -1,0 +1,8 @@
+.headerTitle {
+  padding: 25px 25px 25px 50px;
+  text-align: left;
+  max-width: fit-content;
+}
+.title {
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+}
