@@ -1,3 +1,9 @@
 .main {
   padding-left: 200px;
 }
+.greyColor {
+  color: var(--mantine-color-gray-7);
+}
+.pointer {
+  cursor: pointer;
+}

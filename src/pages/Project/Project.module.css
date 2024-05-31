@@ -1,0 +1,40 @@
+.card {
+  margin: 40px 50px;
+  background-color: var(--mantine-color-body);
+  max-width: 1000px;
+}
+.subheaders {
+  display: flex;
+  flex-direction: row;
+}
+.subheader {
+  margin-right: 150px;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+}
+.subheaderHours {
+  margin-top: 18px;
+}
+.label {
+  font-family: Greycliff CF, var(--mantine-font-family);
+  font-weight: 700;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+  font-size: 24px;
+}
+
+.lead {
+  font-family: Greycliff CF, var(--mantine-font-family);
+  font-weight: 700;
+  font-size: rem(22px);
+  line-height: 1;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-1));
+}
+
+.inner {
+  display: flex;
+}
+
+.ring {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}

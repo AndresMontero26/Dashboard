@@ -8,8 +8,6 @@ import EditProject from "../EditProject/EditProject";
 import classes from "./ProjectsTable.module.css";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import SkeletonTable from "./SkeletonTable";
 function Th({ children, reversed, sorted, onSort }) {
   const Icon = sorted ? (reversed ? IconChevronUp : IconChevronDown) : IconSelector;
   return (
@@ -33,15 +31,7 @@ function filterData(data, search) {
     return [];
   }
   const query = search.toLowerCase().trim();
-  return data.filter((item) => {
-    return keys(item).some((key) => {
-      const value = item[key];
-      if (typeof value === "string") {
-        return value.toLowerCase().includes(query);
-      }
-      return false; // Skip non-string values
-    });
-  });
+  return data.filter((item) => keys(data[0]).some((key) => item[key].toLowerCase().includes(query)));
 }
 
 function sortData(data, payload) {
@@ -62,18 +52,40 @@ function sortData(data, payload) {
     payload.search
   );
 }
+const searchFilter = (data, query) => {
+  if (!query.trim()) {
+    // If the query is empty or whitespace, return the original data
+    return data;
+  }
+
+  // Convert the query to lowercase for case-insensitive search
+  const lowercaseQuery = query.toLowerCase().trim();
+
+  // Filter the data based on the search query
+  const filteredData = data.filter((item) => {
+    // Check each property of the item except 'monthlyHours'
+    for (const key in item) {
+      if (key !== "monthlyHours") {
+        const value = item[key];
+        // If the value is a string and contains the search query (case-insensitive), return true
+        if (typeof value === "string" && value.toLowerCase().includes(lowercaseQuery)) {
+          return true;
+        }
+      }
+    }
+    return []; // Return false if no field matches the query
+  });
+  console.log("filtered", filteredData);
+  return filteredData;
+};
 
 export function ProjectsTable() {
   const [opened, { open, close }] = useDisclosure(false);
   const [modalAction, setModalAction] = useState("add");
   const [search, setSearch] = useState("");
   const [sortedData, setSortedData] = useState([]);
-  const [allData, setAllData] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [sortBy, setSortBy] = useState(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
-  const [activeProject, setActiveProject] = useState({});
-  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -90,9 +102,7 @@ export function ProjectsTable() {
         }));
 
         setSortedData(projectsData);
-        setAllData(projectsData);
         console.log(projectsData);
-        setLoading(true);
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -105,16 +115,14 @@ export function ProjectsTable() {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    setSortedData(sortData(sortedData, { sortBy: field, reversed, search }));
+    setSortedData(sortData(data, { sortBy: field, reversed, search }));
   };
 
   const handleSearchChange = (event) => {
     const { value } = event.currentTarget;
-    console.log(value);
     setSearch(value);
-
-    setSortedData(sortData(allData, { sortBy, reversed: reverseSortDirection, search: value }));
-    console.log(sortData(allData, { sortBy, reversed: reverseSortDirection, search: value }));
+    console.log(value);
+    setSortedData(searchFilter(sortedData, value));
   };
   const openModal = (action) => {
     if (action === "add") {
@@ -124,14 +132,28 @@ export function ProjectsTable() {
     }
     open();
   };
-  const handleProjectClick = (project) => {
-    navigate(`/projects/${project.id}`);
-  };
+
   const rows = sortedData.map((row, i) => (
-    <Table.Tr onClick={() => handleProjectClick(row)} className="pointer" key={row.id}>
-      <Table.Td className={classes.projectName}>{row.projectName}</Table.Td>
-      <Table.Td>{row.projectLead}</Table.Td>
-      <Table.Td ta="center">{row.totalHoursForecasted}</Table.Td>
+    <Table.Tr key={row.name + i} onClick={() => openModal("edit")} className="pointer">
+      <Table.Td className={classes.projectName}>{row.name}</Table.Td>
+      <Table.Td>{row.lead}</Table.Td>
+      <Table.Td ta="center">{row.hoursForcasted}</Table.Td>
+      <Table.Td>{row.namedResources}</Table.Td>
+      <Table.Td>{row.team}</Table.Td>
+      <Table.Td ta="center">
+        {row.hasForecast ? <IconSquareCheckFilled className="greyColor" /> : <IconSquareXFilled className="greyColor" />}
+      </Table.Td>
+      <Table.Td ta="center">{row.feb}</Table.Td>
+      <Table.Td ta="center"> {row.mar}</Table.Td>
+      <Table.Td ta="center">{row.abr}</Table.Td>
+      <Table.Td ta="center">{row.may}</Table.Td>
+      <Table.Td ta="center">{row.jun}</Table.Td>
+      <Table.Td ta="center">{row.jul}</Table.Td>
+      <Table.Td ta="center">{row.aug}</Table.Td>
+      <Table.Td ta="center">{row.sep}</Table.Td>
+      <Table.Td ta="center">{row.oct}</Table.Td>
+      <Table.Td ta="center">{row.nov}</Table.Td>
+      <Table.Td ta="center">{row.dev}</Table.Td>
     </Table.Tr>
   ));
 
@@ -150,8 +172,8 @@ export function ProjectsTable() {
           <IconPlus size={18} style={{ marginRight: "4px" }} /> Add Project
         </Button>
       </Box>
-      <ScrollArea>
-        {loading ? (
+      {sortedData.length > 0 ? (
+        <ScrollArea>
           <Table striped highlightOnHover withTableBorder withColumnBorders horizontalSpacing="xl" verticalSpacing="md">
             <Table.Tbody>
               <Table.Tr>
@@ -164,6 +186,48 @@ export function ProjectsTable() {
                 <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
                   Total Hours Forecasted
                 </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Named Resources
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Team Name
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Has Forecast?
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Feb 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Mar 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Apr 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  May 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Jun 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  July 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Aug 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Sep 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Oct 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Nov 24
+                </Th>
+                <Th sorted={sortBy === "company"} reversed={reverseSortDirection} onSort={() => setSorting("company")}>
+                  Dec 24
+                </Th>
               </Table.Tr>
             </Table.Tbody>
             <Table.Tbody>
@@ -171,7 +235,7 @@ export function ProjectsTable() {
                 rows
               ) : (
                 <Table.Tr>
-                  <Table.Td colSpan={18}>
+                  <Table.Td colSpan={Object.keys(data[0]).length}>
                     <Text fw={500} ta="center">
                       Nothing found
                     </Text>
@@ -180,10 +244,10 @@ export function ProjectsTable() {
               )}
             </Table.Tbody>
           </Table>
-        ) : (
-          <SkeletonTable />
-        )}
-      </ScrollArea>
+        </ScrollArea>
+      ) : (
+        "loading"
+      )}
 
       <Modal.Root opened={opened} onClose={close} size="100%">
         <Modal.Overlay />
@@ -194,7 +258,7 @@ export function ProjectsTable() {
             </Title>
             <Modal.CloseButton />
           </Modal.Header>
-          <Modal.Body>{modalAction === "add" ? <AddProject /> : <EditProject project={activeProject} />}</Modal.Body>
+          <Modal.Body>{modalAction === "add" ? <AddProject /> : <EditProject />}</Modal.Body>
         </Modal.Content>
       </Modal.Root>
     </>

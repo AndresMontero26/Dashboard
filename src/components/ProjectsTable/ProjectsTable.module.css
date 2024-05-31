@@ -1,7 +1,12 @@
 .th {
   padding: 0;
 }
-
+.projectName {
+  min-width: 500px;
+}
+.greyColor {
+  color: var(--mantine-color-gray-7);
+}
 .control {
   width: 100%;
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);

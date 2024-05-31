@@ -7,11 +7,10 @@ const Projects = () => {
   return (
     <>
       <Header title="Projects" />
-      <ScrollArea>
-        <Paper shadow="xs" p="xl">
-          <ProjectsTable />
-        </Paper>
-      </ScrollArea>
+
+      <Paper shadow="xs" p="xl">
+        <ProjectsTable />
+      </Paper>
     </>
   );
 };

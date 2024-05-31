@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Group, Code } from "@mantine/core";
 import logo from "../../../assets/logo.png";
-import { IconBeach, IconUsersGroup, IconSwitchHorizontal, IconLogout, IconListDetails } from "@tabler/icons-react";
+import { IconBeach, IconUsersGroup, IconCertificate, IconLogout, IconListDetails } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
 import { Link } from "react-router-dom";
 import { ColorSchemeToggle } from "../ColorSchemeToggle/ColorSchemeToggle";
@@ -9,7 +9,7 @@ import { ColorSchemeToggle } from "../ColorSchemeToggle/ColorSchemeToggle";
 const data = [
   { link: "/projects", label: "Projects", icon: IconListDetails },
   { link: "/teams", label: "Teams", icon: IconUsersGroup },
-  { link: "/resources", label: "Resources", icon: IconUsersGroup },
+  { link: "/resources", label: "Resources", icon: IconCertificate },
   { link: "/vacations", label: "Vacations", icon: IconBeach },
 ];
 
