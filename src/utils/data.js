@@ -76,6 +76,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Angela Argirovska",
+      "Alessandra Silverio",
+      "Gio Gregorio",
+      "Ahmed Tarek M.,Huiyan Wan"
     ]
   },
   {
@@ -155,6 +161,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victor Truche",
+      "Jad Khattib",
+      "Kai Ruether",
+      "Darena Popova"
     ]
   },
   {
@@ -270,6 +282,14 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Facundo Albassini",
+      "Franco Urbinati",
+      "Celia Li",
+      "Alessandra Silverio",
+      "Rachel Turner",
+      "Ariel Reyes Alcaide"
     ]
   },
   {
@@ -313,6 +333,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Gio Gregorio",
+      "Wenting Wang"
     ]
   },
   {
@@ -374,6 +398,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victoria Rios",
+      "Yamil Neme",
+      "Ariel Reyes Alcaide"
     ]
   },
   {
@@ -615,6 +644,21 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Facundo Albassini",
+      "Victoria Rios",
+      "Yamil Neme",
+      "Martin Riolfo",
+      "Alan Casana Vilca",
+      "Franco Urbinati",
+      "Elena Nesi",
+      "Celia Li",
+      "Viktorija Venckute",
+      "Gregorio Jose",
+      "Ahmed Tarek M.",
+      "Ariel Reyes Alcaide",
+      "Rachel Turner"
     ]
   },
   {
@@ -640,6 +684,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Yamil Neme"
     ]
   },
   {
@@ -665,6 +712,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Yamil Neme"
     ]
   },
   {
@@ -780,6 +830,14 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victoria Rios",
+      "Viktorija Venckute",
+      "Katie Wheatley",
+      "Chloe Souque",
+      "Krasimir Bambalov",
+      "Andres Montero"
     ]
   },
   {
@@ -823,6 +881,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Viktorija Venckute",
+      "Katie Wheatley"
     ]
   },
   {
@@ -866,6 +928,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Morgan Sithole",
+      "Gio Gregorio"
     ]
   },
   {
@@ -927,6 +993,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Alessandra Silverio",
+      "Gio Gregorio",
+      "Ahmed Tarek M."
     ]
   },
   {
@@ -1024,6 +1095,13 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victoria Rios",
+      "Katie Wheatley",
+      "Jaeho Shin",
+      "Gregorio Jose",
+      "Victor Truche"
     ]
   },
   {
@@ -1049,6 +1127,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victoria Rios"
     ]
   },
   {
@@ -1092,6 +1173,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victoria Rios",
+      "Elena Nesi"
     ]
   },
   {
@@ -1135,6 +1220,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "",
+      ""
     ]
   },
   {
@@ -1160,6 +1249,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Yamil Neme"
     ]
   },
   {
@@ -1239,6 +1331,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Yamil Neme",
+      "Elena Nesi",
+      "Viktorija Venckute",
+      "Darena Popova"
     ]
   },
   {
@@ -1300,6 +1398,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Yamil Neme",
+      "Elena Nesi",
+      "Katie Wheatley"
     ]
   },
   {
@@ -1433,6 +1536,15 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Alan Casana Vilca",
+      "Franco Urbinati",
+      "Freek van Eembergen",
+      "Elia Niboldi",
+      "Sweta Singh",
+      "Angela Argirovska",
+      "Darena Popova"
     ]
   },
   {
@@ -1602,6 +1714,17 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Andres Montero",
+      "Franco Urbinati",
+      "Chris Martin",
+      "Andres Puentes",
+      "Katie Wheatley",
+      "Victor Truche",
+      "Andreas Patriksson",
+      "Daniele Massiau",
+      "Youssef Hallal"
     ]
   },
   {
@@ -1627,6 +1750,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Martin Riolfo"
     ]
   },
   {
@@ -1652,6 +1778,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Franco Urbinati"
     ]
   },
   {
@@ -1713,6 +1842,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Andres Montero",
+      "Wenting Wang",
+      "Jessica Gabriel"
     ]
   },
   {
@@ -1846,6 +1980,15 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Andres Montero",
+      "Chloe Souque",
+      "Matt Bailey",
+      "Katie Wheatley",
+      "Wenting Wang",
+      "Ahmed Tarek M.",
+      "Krasimir Bambalov"
     ]
   },
   {
@@ -1997,6 +2140,16 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Angela Argirovska",
+      "Rachel Turner",
+      "Helen Nash",
+      "Chris Martin",
+      "Franco Urbinati",
+      "Celia Li",
+      "Morgan Sithole",
+      "Gio Gregorio"
     ]
   },
   {
@@ -2022,6 +2175,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Franco Urbinati"
     ]
   },
   {
@@ -2047,6 +2203,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Chris Martin"
     ]
   },
   {
@@ -2126,6 +2285,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Andres Puentes",
+      "Matt Bailey",
+      "Lauren Crowe",
+      "Chloe Souque"
     ]
   },
   {
@@ -2313,6 +2478,18 @@ const csvData = [
           "dec": 4
         }
       }
+    ],
+    "resources": [
+      "Jaeho Shin",
+      "Iuliana Jackson",
+      "Wenting Wang",
+      "Lauren Crowe",
+      "Chloe Souque",
+      "Andreas Patriksson",
+      "Helen Nash",
+      "Gregorio Jose",
+      "Jessica Gabriel",
+      "Stephanie Giori"
     ]
   },
   {
@@ -2374,6 +2551,11 @@ const csvData = [
           "dec": 4
         }
       }
+    ],
+    "resources": [
+      "Jad Khattib",
+      "Lauren Crowe",
+      "Helen Nash"
     ]
   },
   {
@@ -2417,6 +2599,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Viktorija Venckute",
+      "Andreas Patriksson"
     ]
   },
   {
@@ -2442,6 +2628,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Lauren Crowe"
     ]
   },
   {
@@ -2521,6 +2710,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Matt Bailey",
+      "Victor Truche",
+      "Chris Martin",
+      "Kai Ruether"
     ]
   },
   {
@@ -2564,6 +2759,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Jaeho Shin,Facundo Albassini",
+      "Victor Truche"
     ]
   },
   {
@@ -2589,6 +2788,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Jaeho Shin"
     ]
   },
   {
@@ -2668,6 +2870,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Gregorio Jose",
+      "Jaeho Shin",
+      "Angela Argirovska",
+      "Darena Popova"
     ]
   },
   {
@@ -2729,6 +2937,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Jaeho Shin",
+      "Facundo Albassini",
+      "Julien Coquet,Chris Martin"
     ]
   },
   {
@@ -2772,6 +2985,10 @@ const csvData = [
           "dec": 15
         }
       }
+    ],
+    "resources": [
+      "Kai Ruether",
+      "Angela Argirovska"
     ]
   },
   {
@@ -2851,6 +3068,12 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Kai Ruether",
+      "Darena Popova",
+      "Andreas Patriksson",
+      "Angela Argirovska"
     ]
   },
   {
@@ -2876,6 +3099,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Kai Ruether"
     ]
   },
   {
@@ -2901,6 +3127,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victor Truche"
     ]
   },
   {
@@ -2944,6 +3173,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Darena Popova",
+      "Victor Truche"
     ]
   },
   {
@@ -2987,6 +3220,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Darena Popova",
+      "Katie Wheatley"
     ]
   },
   {
@@ -3012,6 +3249,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Darena Popova"
     ]
   },
   {
@@ -3037,6 +3277,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Darena Popova"
     ]
   },
   {
@@ -3080,6 +3323,10 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Darena Popova",
+      "Chris Martin"
     ]
   },
   {
@@ -3105,6 +3352,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Huiyan Wan"
     ]
   },
   {
@@ -3166,6 +3416,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Helen Nash",
+      "Huiyan Wan",
+      "Jad Khattib"
     ]
   },
   {
@@ -3191,6 +3446,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Jessica Gabriel,Krasimir Bambalov"
     ]
   },
   {
@@ -3216,6 +3474,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Andreas Patriksson"
     ]
   },
   {
@@ -3277,6 +3538,11 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Victor Truche",
+      "Chloe Souque",
+      "Kai Ruether"
     ]
   },
   {
@@ -3302,6 +3568,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Ariel Reyes Alcaide"
     ]
   },
   {
@@ -3327,6 +3596,9 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "Jaeho Shin"
     ]
   },
   {
@@ -4612,6 +4884,79 @@ const csvData = [
           "dec": 0
         }
       }
+    ],
+    "resources": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
     ]
   }
 ];
