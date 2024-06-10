@@ -1,128 +1,176 @@
 import { useState, useEffect } from "react";
-import { Table, Text, Paper, Group, TextInput, Loader, RingProgress, Center } from "@mantine/core";
-import { db } from "../../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  Table,
+  Text,
+  Paper,
+  Group,
+  TextInput,
+  Loader,
+  Center,
+  RingProgress,
+} from "@mantine/core";
 
-const ResourceTable = ({ resourceName }) => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const getOrderedMonths = () => {
+  const monthOrder = {
+    jan: 1,
+    feb: 2,
+    mar: 3,
+    apr: 4,
+    may: 5,
+    jun: 6,
+    jul: 7,
+    aug: 8,
+    sep: 9,
+    oct: 10,
+    nov: 11,
+    dec: 12,
+  };
+  return Object.keys(monthOrder).sort((a, b) => monthOrder[a] - monthOrder[b]);
+};
 
-  useEffect(() => {
-    const fetchResourceProjects = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "projects"));
-        const allProjects = querySnapshot.docs.map((doc) => doc.data());
+const getColorForPercentage = (percentage) => {
+  if (percentage < 15) {
+    return "green";
+  } else if (percentage < 40) {
+    return "teal";
+  } else if (percentage < 60) {
+    return "blue";
+  } else if (percentage < 80) {
+    return "orange";
+  } else {
+    return "red";
+  }
+};
 
-        // Filter projects based on named resources and remove resources that do not match the resourceName
-        const filteredProjects = allProjects
-          .map((project) => ({
-            ...project,
-            namedResources: project.namedResources.filter((resource) => resource.namedResource === resourceName),
-          }))
-          .filter((project) => project.namedResources.length > 0); // Remove projects with no matching named resources
-
-        // Set filtered projects in state
-        setProjects(filteredProjects);
-        setLoading(false);
-        setError(null);
-      } catch (error) {
-        console.error("Error fetching resource projects:", error);
-        setLoading(false);
-        setError(error);
-      }
-    };
-
-    fetchResourceProjects();
-  }, [resourceName]);
-
-  if (loading) {
+const ResourceTable = ({ projects, resourceName }) => {
+  if (!projects) {
     return <Loader>Loading...</Loader>; // Show loader while data is being fetched
   }
 
-  const renderTableHeader = () => {
-    if (projects.length === 0) return null;
-    const firstProject = projects[0];
-    const months = Object.keys(firstProject.namedResources[0].hoursForEachMonth).sort((a, b) => {
-      const monthOrder = {
-        jan: 1,
-        feb: 2,
-        mar: 3,
-        apr: 4,
-        may: 5,
-        jun: 6,
-        jul: 7,
-        aug: 8,
-        sep: 9,
-        oct: 10,
-        nov: 11,
-        dec: 12,
-      };
-      return monthOrder[a] - monthOrder[b];
+  const orderedMonths = getOrderedMonths();
+
+  const calculateMonthlyTotals = () => {
+    const monthlyTotals = {};
+    orderedMonths.forEach((month) => {
+      monthlyTotals[month] = 0;
     });
 
-    return months.map((month) => <Table.Th key={month}>{month.toUpperCase()}</Table.Th>);
+    projects.forEach((project) => {
+      project.namedResources.forEach((namedResource) => {
+        if (namedResource.namedResource === resourceName) {
+          orderedMonths.forEach((month) => {
+            monthlyTotals[month] += namedResource.hoursForEachMonth[month] || 0;
+          });
+        }
+      });
+    });
+
+    return monthlyTotals;
+  };
+
+  const monthlyTotals = calculateMonthlyTotals();
+
+  const renderTableHeader = () => {
+    if (projects.length === 0) return null;
+    return orderedMonths.map((month) => (
+      <Table.Th key={month} style={{ textAlign: "center" }}>
+        {month.toUpperCase()}
+      </Table.Th>
+    ));
   };
 
   const renderRows = () => {
     return projects.map((project, index) => {
-      const namedResource = project.namedResources[0];
-      const totalHours = Object.values(namedResource.hoursForEachMonth).reduce((acc, curr) => acc + curr, 0);
+      return project.namedResources.map((namedResource, resourceIndex) => {
+        if (namedResource.namedResource !== resourceName) return null;
 
-      return (
-        <Table.Tr key={index}>
-          <Table.Td>{project.projectName}</Table.Td>
-          <Table.Td>
-            <Paper withBorder radius="md" p="xs" w={190}>
-              <Group style={{ justifyContent: "center" }}>
-                <Text fw={700} size="xl">
-                  {totalHours}h
-                </Text>
-              </Group>
-            </Paper>
-          </Table.Td>
-          {/* Render text inputs for each month */}
-          {Object.entries(namedResource.hoursForEachMonth)
-            .sort((a, b) => {
-              const monthOrder = {
-                jan: 1,
-                feb: 2,
-                mar: 3,
-                apr: 4,
-                may: 5,
-                jun: 6,
-                jul: 7,
-                aug: 8,
-                sep: 9,
-                oct: 10,
-                nov: 11,
-                dec: 12,
-              };
-              return monthOrder[a[0]] - monthOrder[b[0]];
-            })
-            .map(([month, value]) => (
-              <Table.Td key={month}>
-                <TextInput value={value} style={{ width: "48px" }} />
+        const totalHours = Object.values(
+          namedResource.hoursForEachMonth
+        ).reduce((acc, curr) => acc + curr, 0);
+
+        return (
+          <Table.Tr key={`${index}-${resourceIndex}`}>
+            <Table.Td>{project.projectName}</Table.Td>
+            <Table.Td>
+              <Paper withBorder radius="md" p="xs" w={150}>
+                <Group style={{ justifyContent: "center" }}>
+                  <Text fw={500} size="xl">
+                    {totalHours}h
+                  </Text>
+                </Group>
+              </Paper>
+            </Table.Td>
+            {orderedMonths.map((month) => (
+              <Table.Td key={month} style>
+                <TextInput
+                  value={namedResource.hoursForEachMonth[month] || 0}
+                  style={{ width: "48px", margin: "auto" }}
+                />
               </Table.Td>
             ))}
-        </Table.Tr>
-      );
+          </Table.Tr>
+        );
+      });
     });
   };
 
+  const renderTotalRow = () => {
+    return (
+      <Table.Tr>
+        <Table.Td colSpan={2}>
+          <Text fw={700} size="xl">
+            Capacity
+          </Text>
+        </Table.Td>
+        {orderedMonths.map((month) => (
+          <Table.Td key={month}>
+            <Group style={{ justifyContent: "center" }}>
+              <RingProgress
+                size={80}
+                roundCaps
+                thickness={8}
+                sections={[
+                  {
+                    value: (monthlyTotals[month] / 120) * 100,
+                    color: getColorForPercentage(
+                      (monthlyTotals[month] / 120) * 100
+                    ),
+                  },
+                ]}
+                label={
+                  <Center>
+                    {Math.round((monthlyTotals[month] / 120) * 100)}%
+                  </Center>
+                }
+              />
+              <div>
+                <Text fw={700} size="xl">
+                  {monthlyTotals[month]}h
+                </Text>
+              </div>
+            </Group>
+          </Table.Td>
+        ))}
+      </Table.Tr>
+    );
+  };
+
   return (
-    <Table.ScrollContainer minWidth={800} style={{ marginLeft: "30px" }}>
-      <Table verticalSpacing="sm">
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Project</Table.Th>
-            <Table.Th style={{ width: "240px" }}>Forecasted Hours</Table.Th>
-            {renderTableHeader()}
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{renderRows()}</Table.Tbody>
-      </Table>
-    </Table.ScrollContainer>
+    <Table verticalSpacing="sm" stickyHeader>
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th style={{ textAlign: "center" }}>Project</Table.Th>
+          <Table.Th style={{ width: "240px", textAlign: "center" }}>
+            Forecasted Hours
+          </Table.Th>
+          {renderTableHeader()}
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
+        {renderRows()}
+        {renderTotalRow()}
+      </Table.Tbody>
+    </Table>
   );
 };
 

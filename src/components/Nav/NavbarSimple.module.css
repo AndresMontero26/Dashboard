@@ -4,11 +4,20 @@
   padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;
-  border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  border-right: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
+  transition: width 0.3s ease;
+}
+.logoImg {
+  margin: auto;
+}
+
+.navbar.collapsed {
+  width: 92px;
 }
 
 .navbarMain {
@@ -18,13 +27,15 @@
 .header {
   padding-bottom: var(--mantine-spacing-md);
   margin-bottom: calc(var(--mantine-spacing-md) * 1.5);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  border-bottom: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
 .footer {
   padding-top: var(--mantine-spacing-md);
   margin-top: var(--mantine-spacing-md);
-  border-top: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+  border-top: rem(1px) solid
+    light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
 .link {
@@ -36,9 +47,13 @@
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
   border-radius: var(--mantine-radius-sm);
   font-weight: 500;
+  transition: all 0.3s ease;
 
   @mixin hover {
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    background-color: light-dark(
+      var(--mantine-color-gray-0),
+      var(--mantine-color-dark-6)
+    );
     color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
 
     .linkIcon {
@@ -64,4 +79,25 @@
   margin-right: var(--mantine-spacing-sm);
   width: rem(25px);
   height: rem(25px);
+}
+
+.link span {
+  margin-left: var(--mantine-spacing-xs);
+}
+
+.collapseButton {
+  border: none;
+  background: transparent;
+  color: var(--mantine-color-gray-7);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  position: absolute;
+  background: aliceblue;
+  right: -11px;
+  border: solid 1px #c8c2c2;
+  top: 92px;
+}
+
+.collapsed .collapseButton {
+  transform: rotate(180deg);
 }

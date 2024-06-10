@@ -1,9 +1,14 @@
 .main {
   padding-left: 200px;
+  transition: padding-left 0.3s ease;
 }
 .greyColor {
   color: var(--mantine-color-gray-7);
 }
 .pointer {
   cursor: pointer;
+}
+.collapsed-main {
+  padding-left: 90px;
+  transition: padding-left 0.3s ease;
 }
